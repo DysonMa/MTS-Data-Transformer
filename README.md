@@ -1,15 +1,33 @@
 # MTS Specimens Data Tranformer
 
+https://github.com/DysonMa/MTS-Data-Transformer
+
 >This program is designed for graduate students who are currently studying at the NTU CE 812 lab.
+
+## What did this program solve?
+
+Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully. 
+
+Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe build by PyQt5!
 
 ## How to get it?
 
-### [Download as zip](https://github.com/DysonMa/MTS-Data-Transformer/archive/refs/heads/main.zip)
+- use `git` command to clone this repo
+- [Download as zip](https://github.com/DysonMa/MTS-Data-Transformer/archive/refs/heads/main.zip)
  
 ## Environment
 
 - You don't need to install Python to execute `ElasticModulus_Test-UI.exe`
 - Support both Windows and Linux
+
+## Packages
+
+- matplotlib, seaborn
+- PyQt5
+- Pandas
+- Numpy
+- Scipy
+- Xlsxwriter
 
 ## Folder Structure
 
