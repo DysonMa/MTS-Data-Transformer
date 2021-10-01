@@ -1,4 +1,4 @@
-# MTS Specimens Data Tranformer
+# MTS Specimens Data Transformer
 
 https://github.com/DysonMa/MTS-Data-Transformer
 
