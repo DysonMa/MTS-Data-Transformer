@@ -11,6 +11,14 @@
 - You don't need to install Python to execute `ElasticModulus_Test-UI.exe`
 - Support both Windows and Linux
 
+## Folder Structure
+
+- `datas`: datas comes from MTS
+- `EM_Test_Final`: `ElasticModulus_Test-UI.exe` is the only file you need to care about
+- `pictures`: for demo pictures
+- `src`: main code(not designed very well, maybe refactor it in the future)
+- `output`: All the datas and plots are listed in this folder according to the folder name you named
+
 ## How to use it?
 
 1. Open the exe in the `EM_Test_Final` folder
@@ -42,7 +50,7 @@
 
 7. Select a folder in `選擇檔案欲存入的位置` to save the output files
 
-    > Select `test` folder for demo
+    > Select `output` folder for demo
 
 8. Enter the save folder name in `輸入存檔名稱`
     > Enter `WTF_MTS` for demo
@@ -64,4 +72,4 @@ It's not designed very well and still exist some bugs to fix, so feel free to co
 - Author: madihsiang (R07)
 - Gmail: madihsiang@gmail.com
 
-### Happy Experiment!
+## Happy Experiment!
