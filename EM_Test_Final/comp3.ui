@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1650</width>
+    <height>940</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1520</width>
+    <height>940</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="minimumSize">
+      <size>
+       <width>1460</width>
+       <height>922</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>處理數據</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="0" colspan="7">
+        <widget class="QTextBrowser" name="PathTxt">
+         <property name="minimumSize">
+          <size>
+           <width>500</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="5" rowspan="8">
+        <widget class="QGraphicsView" name="graphicsView_2">
+         <property name="minimumSize">
+          <size>
+           <width>515</width>
+           <height>310</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>515</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="inputLabel">
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>配比種類數量:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0" colspan="5">
+        <widget class="QLabel" name="label_3">
+         <property name="minimumSize">
+          <size>
+           <width>307</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>輸入楊氏係數的圖標題: (如果未輸入，預設:Elastic Modulus)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="3" colspan="2">
+        <widget class="QProgressBar" name="progressBar">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="5">
+        <widget class="QLineEdit" name="compTitle">
+         <property name="minimumSize">
+          <size>
+           <width>380</width>
+           <height>25</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0" colspan="5">
+        <widget class="QLineEdit" name="EMTitle">
+         <property name="minimumSize">
+          <size>
+           <width>380</width>
+           <height>25</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0" colspan="3">
+        <widget class="QPushButton" name="pltBtn">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Plot and Export to Excel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label">
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>輸入存檔名稱:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1" colspan="4">
+        <widget class="QLineEdit" name="saveFileName">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>25</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="6" rowspan="8">
+        <widget class="QGraphicsView" name="graphicsView_3">
+         <property name="minimumSize">
+          <size>
+           <width>515</width>
+           <height>310</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>515</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="5">
+        <widget class="QTextBrowser" name="savePathTxt">
+         <property name="minimumSize">
+          <size>
+           <width>381</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="5">
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>338</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>輸入抗壓強度的圖標題: (如果未輸入，預設: Compressive Strength)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="selectBtn">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Select</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QRadioButton" name="Cube">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cube (5*5*5)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <widget class="QTableWidget" name="inputWidget">
+         <property name="minimumSize">
+          <size>
+           <width>221</width>
+           <height>428</height>
+          </size>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="rowCount">
+          <number>0</number>
+         </property>
+         <property name="columnCount">
+          <number>2</number>
+         </property>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>配比種類</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>配比數量</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QSpinBox" name="spinBox">
+         <property name="minimumSize">
+          <size>
+           <width>37</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QRadioButton" name="Cylinder">
+         <property name="minimumSize">
+          <size>
+           <width>105</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cylinder (10*20)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3" rowspan="2" colspan="4">
+        <widget class="QGraphicsView" name="graphicsView">
+         <property name="minimumSize">
+          <size>
+           <width>1205</width>
+           <height>475</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QPushButton" name="saveBtn">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>選擇檔案欲存入的位置</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>預覽數據</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="1" rowspan="5">
+        <widget class="QGraphicsView" name="graphicsView_4">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" rowspan="5">
+        <widget class="QTableView" name="compTableView">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QLabel" name="label_9">
+         <property name="minimumSize">
+          <size>
+           <width>101</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>楊氏係數篩選值</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" rowspan="5">
+        <widget class="QTableView" name="compTableView_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" rowspan="6">
+        <widget class="QTableView" name="EMTableView">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_8">
+         <property name="minimumSize">
+          <size>
+           <width>101</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>抗壓強度篩選值</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLabel" name="label_7">
+         <property name="minimumSize">
+          <size>
+           <width>131</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>楊氏係數 figure</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="ReCompPlotBtn">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>plot 抗壓強度圖</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLabel" name="label_11">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>篩選後的個別楊氏係數 (kgf/cm2):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_10">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>篩選後的個別抗壓強度 (kgf/cm2):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QLabel" name="EMLabel">
+         <property name="minimumSize">
+          <size>
+           <width>47</width>
+           <height>12</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>12</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>20%</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="2">
+        <widget class="QPushButton" name="ReEMPlotBtn">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>plot 楊氏係數圖</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="minimumSize">
+          <size>
+           <width>131</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>個別抗壓強度 (kgf/cm2):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="2">
+        <widget class="QSlider" name="EMVerticalSlider">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>22</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_6">
+         <property name="minimumSize">
+          <size>
+           <width>131</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>抗壓強度 figure</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3" rowspan="6">
+        <widget class="QTableView" name="EMTableView_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="compLabel">
+         <property name="minimumSize">
+          <size>
+           <width>47</width>
+           <height>12</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>12</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>20%</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1" rowspan="6">
+        <widget class="QGraphicsView" name="graphicsView_5">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>400</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="minimumSize">
+          <size>
+           <width>131</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>個別楊氏係數 (kgf/cm2):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QSlider" name="compVerticalSlider">
+         <property name="minimumSize">
+          <size>
+           <width>22</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
