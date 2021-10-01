@@ -2,10 +2,14 @@
 
 >This program is designed for graduate students who are currently studying at the NTU CE 812 lab.
 
+## How to get it?
+
+### [Download as zip](https://github.com/DysonMa/MTS-Data-Transformer/archive/refs/heads/main.zip)
+ 
 ## Environment
 
 - You don't need to install Python to execute `ElasticModulus_Test-UI.exe`
-- Both support Windows and Linux
+- Support both Windows and Linux
 
 ## How to use it?
 
@@ -57,7 +61,7 @@
 
 It's not designed very well and still exist some bugs to fix, so feel free to contact me if needed
 
-- Author: madihsiang
+- Author: madihsiang (R07)
 - Gmail: madihsiang@gmail.com
 
 ### Happy Experiment!
