@@ -91,28 +91,13 @@ class PlotManager():
         else:
             print(f"The kind {kind} is not defined!")
 
-    # 繪圖函式
-    # def axesPlot(self, x, y, i, Strain_i_List, ex, xmax, ymax, popt):
-    #     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
-    #     ax1.grid(ls='-')
-    #     ax1.set(title='Data_All', xlabel='strain',
-    #             ylabel='f"c(kg/cm2)', xlim=(0, max(Strain_i_List)*1.25))
-    #     ax1.set_label('sine')
-    #     ax1.scatter(x, y)
-    #     #             ax1.set_xlim(0,0.003)
-    #     ax1.legend(['{}'.format(ex[i])], loc='upper left')
+    def plot_bar(self, x, y, title):
+        plt.figure(figsize=(5, 3))
+        plot = plt.bar(x, y, align='center', alpha=0.5)
+        plt.ylabel('Compressive Strength(kgf/c$\mathregular{m^2}$)')
+        plt.title(title)
+        self.createLabels(plot)
 
-    #     ax2.set(title='Data_Until_Max', xlabel='strain', ylabel='f"c(kg/cm2)')
-    #     ax2.grid(ls='-')
-    #     ax2.plot(xmax, ymax, 'o', xmax, linear_regression(
-    #         xmax, popt[0], popt[1]), 'r')
-    #     #             ax2.set_xlim(0,0.0007)
-    #     ax2.legend(['{}'.format(ex[i]), 'Elastic Modulus: {}'.format(
-    #         round(popt[0], 2))], loc='upper left')
-
-    #     fig.savefig(path+'\\fig_'+str(i+1)+'.png')
-
-    # 畫直方圖
     def createLabels(self, data):
         for item in data:
             height = item.get_height()
@@ -201,11 +186,10 @@ class PlotManager():
                 }
             }
 
+            # stress-strain curve
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
-
             self.ax_plot(ax1, "stress_strain_curve", **plot_args_1)
             self.ax_plot(ax2, "elastic_modulus", **plot_args_2)
-
             fig.savefig(
                 get_file_path(
                     save_folder_path,
@@ -217,9 +201,11 @@ class PlotManager():
             plt.cla()       # clear an axis
             plt.close(fig)  # close figure
 
+            # stress-strain curve(put them into a bigger figure)
             self.ax_plot(bigger_ax[i, 0], "stress_strain_curve", **plot_args_1)
             self.ax_plot(bigger_ax[i, 1], "elastic_modulus", **plot_args_2)
 
+        # save bigger figure
         bigger_figure_path = get_file_path(
             save_folder_path,
             "fig_All.png"
@@ -229,10 +215,44 @@ class PlotManager():
             dpi=100
         )
 
-        # max compressive strength
+        # avg max compressive strength
         avg_max_stress_list = dataManager.get_avg_max_stress_per_group(
             specimens_datas,
             exNum
         )
+        self.plot_bar(
+            x=ratio_type,
+            y=avg_max_stress_list,
+            title=self.w.compTitle.text() or "Compressive Strength"
+        )
+        avg_max_stress_figure_path = get_file_path(
+            save_folder_path,
+            "Compressive Strength.png"
+        )
+        plt.savefig(
+            avg_max_stress_figure_path,
+            bbox_inches='tight'
+        )
+
+        # avg max elastic modulus
+        avg_max_em_list = dataManager.get_avg_max_em_per_group(
+            specimens_datas,
+            exNum
+        )
+        self.plot_bar(
+            x=ratio_type,
+            y=avg_max_em_list,
+            title=self.w.EMTitle.text() or "Elastic modulus"
+        )
+        avg_max_em_figure_path = get_file_path(
+            save_folder_path,
+            "Elastic modulus.png"
+        )
+        plt.savefig(
+            avg_max_em_figure_path,
+            bbox_inches='tight'
+        )
 
         self.layout_Figure(bigger_figure_path, self.w.graphicsView)
+        self.layout_Figure(avg_max_stress_figure_path, self.w.graphicsView_2)
+        self.layout_Figure(avg_max_em_figure_path, self.w.graphicsView_3)

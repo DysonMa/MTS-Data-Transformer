@@ -29,6 +29,7 @@ class DataManager():
         for i in range(len(exNum)):
             initial_num += exNum[i]
             exNum_ids.append(initial_num)
+        return exNum_ids
 
     def get_specimen_datas_json(self, area):
         specimens = self.read_input_file()
@@ -119,9 +120,16 @@ class DataManager():
     def get_max_stress_list(self, specimens_datas):
         max_stress_list = []
         for i, specimens_data in enumerate(specimens_datas):
-            max_stress = max(specimens_datas[i]["info"]["stress"]["data"])
+            max_stress = max(specimens_data["info"]["stress"]["data"])
             max_stress_list.append(max_stress)
         return max_stress_list
+
+    def get_max_em_list(self, specimens_datas):
+        max_em_list = []
+        for i, specimens_data in enumerate(specimens_datas):
+            max_em = specimens_data["info"]["elastic_modulus"]["data"]["slope"]
+            max_em_list.append(max_em)
+        return max_em_list
 
     def get_avg_max_stress_per_group(self, specimens_datas, exNum):
         max_stress_list = self.get_max_stress_list(specimens_datas)
@@ -134,3 +142,15 @@ class DataManager():
                 sum(max_stress_list[start_id:end_id])/(end_id - start_id)
             )
         return avg_max_stress_list
+
+    def get_avg_max_em_per_group(self, specimens_datas, exNum):
+        max_em_list = self.get_max_em_list(specimens_datas)
+        exNum_ids = self.get_exNum_ids(exNum)
+        avg_em_list = []
+        for i in range(1, len(exNum_ids)):
+            start_id = exNum_ids[i-1]
+            end_id = exNum_ids[i]
+            avg_em_list.append(
+                sum(max_em_list[start_id:end_id])/(end_id - start_id)
+            )
+        return avg_em_list
