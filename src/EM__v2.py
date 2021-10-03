@@ -30,48 +30,7 @@ plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
 # from matplotlib.figure import Figure
 # from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
-
-# linear regression
-def linear_regression(x, a, b):
-    return a * x + b
-
-
-def read():
-    global fileName
-    fileName, filetype = QFileDialog.getOpenFileName(w,
-                                                     "選取檔案",
-                                                     "",
-                                                     "txt file(*.txt)", None)
-    if fileName == '':
-        return
-    w.PathTxt.setText(fileName)
-
-
-def change_row():
-    w.inputWidget.setRowCount(w.spinBox.value())
-
-
-def save():
-    global PathFile
-    PathFile = QFileDialog.getExistingDirectory(w,
-                                                "選取資料夾",
-                                                "")
-    if PathFile == '':
-        return
-
-    w.savePathTxt.setText(PathFile)
-
-
-def compshow():
-    w.compLabel.setText(str(w.compVerticalSlider.value())+"%")
-
-
-def EMshow():
-    w.EMLabel.setText(str(w.EMVerticalSlider.value())+"%")
-
 # 繪圖函式
-
-
 def axesPlot(ax1, ax2, x, y, i, Strain_i_List, ex, xmax, ymax, popt):
     ax1.grid(ls='-')
     ax1.set(title='Data_All', xlabel='strain',
