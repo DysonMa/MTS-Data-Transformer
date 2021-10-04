@@ -43,10 +43,10 @@ class UI(QWidget):
 
         # self.selectBtn.clicked.connect(self.test)
 
-        self.selectBtn.clicked.connect(self.read_input_file)
-        self.spinBox.valueChanged.connect(self.change_row)
-        self.saveBtn.clicked.connect(self.save_folder)
-        self.pltBtn.clicked.connect(self.plot)
+        self.select_input_file_btn.clicked.connect(self.read_input_file)
+        self.ratio_num_spinbox.valueChanged.connect(self.change_row)
+        # self.saveBtn.clicked.connect(self.save_folder)
+        self.plot_btn.clicked.connect(self.plot)
 
     def plot(self):
         return self.plotManager.plot()
@@ -57,17 +57,17 @@ class UI(QWidget):
         )
         if fileName == '':
             return
-        self.PathTxt.setText(fileName)
+        self.path_txt.setText(fileName)
 
     def change_row(self):
-        self.inputWidget.setRowCount(self.spinBox.value())
+        self.ratio_widget.setRowCount(self.ratio_num_spinbox.value())
 
-    def save_folder(self):
-        # global PathFile
-        PathFile = QFileDialog.getExistingDirectory(self, "選取資料夾", "")
-        if PathFile == '':
-            return
-        self.savePathTxt.setText(PathFile)
+    # def save_folder(self):
+    #     # global PathFile
+    #     PathFile = QFileDialog.getExistingDirectory(self, "選取資料夾", "")
+    #     if PathFile == '':
+    #         return
+    #     self.savePathTxt.setText(PathFile)
 
     # utility
     def add_percentage_label(self, labeledElement, value):

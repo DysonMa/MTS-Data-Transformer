@@ -43,16 +43,16 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tab_1">
       <attribute name="title">
        <string>處理數據</string>
       </attribute>
-      <widget class="QPushButton" name="selectBtn">
+      <widget class="QPushButton" name="select_input_file_btn">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>75</width>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
          <height>31</height>
         </rect>
        </property>
@@ -63,15 +63,18 @@
         </size>
        </property>
        <property name="text">
-        <string>Select</string>
+        <string>選擇輸入文件</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
        </property>
       </widget>
-      <widget class="QTextBrowser" name="PathTxt">
+      <widget class="QTextBrowser" name="path_txt">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>10</y>
-         <width>500</width>
+         <x>140</x>
+         <y>20</y>
+         <width>555</width>
          <height>31</height>
         </rect>
        </property>
@@ -85,13 +88,13 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QRadioButton" name="Cube">
+      <widget class="QRadioButton" name="cube_checkbox">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>60</y>
+         <x>300</x>
+         <y>80</y>
          <width>121</width>
-         <height>16</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -104,13 +107,13 @@
         <string>Cube (5*5*5)</string>
        </property>
       </widget>
-      <widget class="QRadioButton" name="Cylinder">
+      <widget class="QRadioButton" name="cylinder_checkbox">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>60</y>
+         <x>410</x>
+         <y>80</y>
          <width>121</width>
-         <height>16</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -123,48 +126,39 @@
         <string>Cylinder (10*20)</string>
        </property>
       </widget>
-      <widget class="QLabel" name="inputLabel">
+      <widget class="QLabel" name="ratio_type_label">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>75</width>
-         <height>16</height>
+         <x>20</x>
+         <y>80</y>
+         <width>105</width>
+         <height>31</height>
         </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>75</width>
-         <height>16</height>
-        </size>
        </property>
        <property name="text">
         <string>配比種類數量:</string>
        </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
       </widget>
-      <widget class="QGraphicsView" name="graphicsView">
+      <widget class="QGraphicsView" name="graphicsView_all">
        <property name="geometry">
         <rect>
-         <x>284</x>
-         <y>91</y>
-         <width>1171</width>
-         <height>475</height>
+         <x>290</x>
+         <y>130</y>
+         <width>1161</width>
+         <height>411</height>
         </rect>
        </property>
       </widget>
-      <widget class="QTableWidget" name="inputWidget">
+      <widget class="QTableWidget" name="ratio_widget">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>127</y>
-         <width>261</width>
-         <height>441</height>
+         <y>130</y>
+         <width>271</width>
+         <height>751</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -202,165 +196,96 @@
         </property>
        </column>
       </widget>
-      <widget class="QPushButton" name="saveBtn">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
+      <widget class="QGraphicsView" name="graphicsView_comp">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>581</y>
-         <width>381</width>
-         <height>30</height>
+         <x>290</x>
+         <y>601</y>
+         <width>591</width>
+         <height>281</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>140</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>選擇檔案欲存入的位置</string>
-       </property>
       </widget>
-      <widget class="QGraphicsView" name="graphicsView_2">
+      <widget class="QGraphicsView" name="graphicsView_em">
        <property name="geometry">
         <rect>
-         <x>420</x>
-         <y>572</y>
-         <width>515</width>
-         <height>310</height>
+         <x>890</x>
+         <y>601</y>
+         <width>561</width>
+         <height>281</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>515</width>
-         <height>310</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>515</width>
-         <height>16777215</height>
-        </size>
-       </property>
       </widget>
-      <widget class="QGraphicsView" name="graphicsView_3">
+      <widget class="QLabel" name="save_folder_label">
        <property name="geometry">
         <rect>
-         <x>940</x>
-         <y>572</y>
-         <width>515</width>
-         <height>310</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>515</width>
-         <height>310</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>515</width>
-         <height>16777215</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QTextBrowser" name="savePathTxt">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>624</y>
-         <width>381</width>
+         <x>720</x>
+         <y>20</y>
+         <width>151</width>
          <height>31</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>381</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
+       <property name="text">
+        <string>輸入存檔資料夾名稱:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLineEdit" name="save_file_name_input">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>675</y>
-         <width>75</width>
-         <height>16</height>
+         <x>870</x>
+         <y>23</y>
+         <width>171</width>
+         <height>27</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>75</width>
-         <height>16</height>
-        </size>
+      </widget>
+      <widget class="QLabel" name="comp_label">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>560</y>
+         <width>211</width>
+         <height>21</height>
+        </rect>
        </property>
        <property name="text">
-        <string>輸入存檔名稱:</string>
+        <string>輸入抗壓強度的圖標題 (optional)</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="saveFileName">
+      <widget class="QLineEdit" name="comp_title_input">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>670</y>
-         <width>301</width>
+         <x>510</x>
+         <y>560</y>
+         <width>371</width>
          <height>25</height>
         </rect>
        </property>
+       <property name="placeholderText">
+        <string>預設: Compressive Strength</string>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="em_label">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>710</y>
-         <width>381</width>
-         <height>16</height>
+         <x>890</x>
+         <y>560</y>
+         <width>221</width>
+         <height>21</height>
         </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>338</width>
-         <height>16</height>
-        </size>
        </property>
        <property name="text">
-        <string>輸入抗壓強度的圖標題: (預設: Compressive Strength)</string>
+        <string>輸入楊氏係數的圖標題 (optional)</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="compTitle">
+      <widget class="QLineEdit" name="em_title_input">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>741</y>
-         <width>380</width>
+         <x>1110</x>
+         <y>560</y>
+         <width>341</width>
          <height>25</height>
         </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>380</width>
-         <height>25</height>
-        </size>
        </property>
        <property name="maximumSize">
         <size>
@@ -368,55 +293,17 @@
          <height>25</height>
         </size>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>781</y>
-         <width>381</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>307</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>輸入楊氏係數的圖標題: (預設: Elastic Modulus)</string>
+       <property name="placeholderText">
+        <string>預設: Elastic Modulus</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="EMTitle">
+      <widget class="QPushButton" name="put_plot_btn">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>812</y>
-         <width>380</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>380</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>380</width>
-         <height>25</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pltBtn">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>852</y>
-         <width>191</width>
-         <height>25</height>
+         <x>1230</x>
+         <y>20</y>
+         <width>181</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -426,25 +313,19 @@
         </size>
        </property>
        <property name="text">
-        <string>Plot and Export to Excel</string>
+        <string>Put the figures on the Canvas</string>
        </property>
       </widget>
       <widget class="QProgressBar" name="progressBar">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>852</y>
-         <width>180</width>
-         <height>25</height>
+         <x>720</x>
+         <y>80</y>
+         <width>731</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="minimumSize">
-        <size>
-         <width>180</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
         <size>
          <width>180</width>
          <height>25</height>
@@ -454,13 +335,13 @@
         <number>0</number>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="ratio_num_spinbox">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>90</y>
-         <width>51</width>
-         <height>21</height>
+         <x>140</x>
+         <y>80</y>
+         <width>141</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -468,6 +349,60 @@
          <width>37</width>
          <height>20</height>
         </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plot_btn">
+       <property name="geometry">
+        <rect>
+         <x>1060</x>
+         <y>20</y>
+         <width>161</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Export to Excel and Plot</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="custom_area_checkbox">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>80</y>
+         <width>121</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>105</width>
+         <height>16</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="custom_area_input">
+       <property name="geometry">
+        <rect>
+         <x>576</x>
+         <y>82</y>
+         <width>121</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Enter Custom Area</string>
        </property>
       </widget>
      </widget>

@@ -36,9 +36,9 @@ class PlotManager():
         ]
 
         graphic_view_list = [
-            self.w.graphicsView,
-            self.w.graphicsView_2,
-            self.w.graphicsView_3,
+            self.w.graphicsView_all,
+            self.w.graphicsView_comp,
+            self.w.graphicsView_em,
         ]
 
         for i in range(len(text_list)):
@@ -111,8 +111,8 @@ class PlotManager():
 
     def get_ratio_type_and_exNum_from_input(self):
         ratio_type, exNum = [], []
-        for i in range(self.w.inputWidget.rowCount()):
-            if self.w.inputWidget.item(i, 0) == None:
+        for i in range(self.w.ratio_widget.rowCount()):
+            if self.w.ratio_widget.item(i, 0) == None:
                 QMessageBox.critical(
                     self.w,
                     'Error',
@@ -121,9 +121,9 @@ class PlotManager():
                 )
                 return
             # TODO: add ratio_type validator
-            ratio_type.append(self.w.inputWidget.item(i, 0).text())
+            ratio_type.append(self.w.ratio_widget.item(i, 0).text())
             # TODO: add exNum validator
-            exNum.append(int(self.w.inputWidget.item(i, 1).text()))
+            exNum.append(int(self.w.ratio_widget.item(i, 1).text()))
         return (ratio_type, exNum)
 
     def get_area(self):
@@ -143,7 +143,7 @@ class PlotManager():
         )
 
         # set save folder path
-        save_folder_name = self.w.saveFileName.text()
+        save_folder_name = self.w.save_file_name_input.text()
         folder_path = get_folder_path("output")
         save_folder_path = get_file_path(folder_path, save_folder_name)
         if not os.path.isdir(save_folder_path):
@@ -156,6 +156,10 @@ class PlotManager():
             figsize=(11.5, 3.3*len(specimens_datas))
         )
         plt.tight_layout(pad=3.5)
+
+        # progressbar
+        step = 100/len(specimens_datas)
+        progress = 0
 
         # stress-strain curve & elastic modulus
         for i, specimens_data in enumerate(specimens_datas):
@@ -205,6 +209,10 @@ class PlotManager():
             self.ax_plot(bigger_ax[i, 0], "stress_strain_curve", **plot_args_1)
             self.ax_plot(bigger_ax[i, 1], "elastic_modulus", **plot_args_2)
 
+            # progressbar
+            progress += step
+            self.w.progressBar.setValue(round(progress))
+
         # save bigger figure
         bigger_figure_path = get_file_path(
             save_folder_path,
@@ -223,7 +231,7 @@ class PlotManager():
         self.plot_bar(
             x=ratio_type,
             y=avg_max_stress_list,
-            title=self.w.compTitle.text() or "Compressive Strength"
+            title=self.w.comp_title_input.text() or "Compressive Strength"
         )
         avg_max_stress_figure_path = get_file_path(
             save_folder_path,
@@ -242,7 +250,7 @@ class PlotManager():
         self.plot_bar(
             x=ratio_type,
             y=avg_max_em_list,
-            title=self.w.EMTitle.text() or "Elastic modulus"
+            title=self.w.em_title_input.text() or "Elastic modulus"
         )
         avg_max_em_figure_path = get_file_path(
             save_folder_path,
@@ -253,6 +261,15 @@ class PlotManager():
             bbox_inches='tight'
         )
 
-        self.layout_Figure(bigger_figure_path, self.w.graphicsView)
-        self.layout_Figure(avg_max_stress_figure_path, self.w.graphicsView_2)
-        self.layout_Figure(avg_max_em_figure_path, self.w.graphicsView_3)
+        # OK
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Success")
+        msgBox.setWindowTitle("Congratulation")
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        returnValue = msgBox.exec()
+        if(returnValue == QMessageBox.Ok):
+            self.layout_Figure(bigger_figure_path, self.w.graphicsView_all)
+            self.layout_Figure(avg_max_stress_figure_path,
+                               self.w.graphicsView_comp)
+            self.layout_Figure(avg_max_em_figure_path, self.w.graphicsView_em)
