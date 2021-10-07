@@ -64,6 +64,7 @@ class DataManager():
 
             specimens_datas.append({
                 "id": Id+1,
+                "name": str(Id+1),  # TODO
                 "info": {
                     "displacement": {
                         "unit": "mm",

@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
 )
 from DataManager import DataManager
 from Validator import Validator
-from scipy.sparse import data
+from ExcelManager import ExcelManager
 from Utilities import (
     linear_regression,
     get_file_path,
@@ -169,7 +169,7 @@ class PlotManager():
             plot_args_1 = {
                 "info": {
                     "title": "Data_All",
-                    "specimen_name": specimens_data["id"]
+                    "specimen_name": specimens_data["name"]
                 },
                 "datas": {
                     "strain_list": strain_list,
@@ -180,7 +180,7 @@ class PlotManager():
             plot_args_2 = {
                 "info": {
                     "title": "Data_Until_Max",
-                    "specimen_name": specimens_data["id"]
+                    "specimen_name": specimens_data["name"]
                 },
                 "datas": {
                     "x": specimens_data["info"]["elastic_modulus"]["data"]["x"],
@@ -260,6 +260,16 @@ class PlotManager():
             avg_max_em_figure_path,
             bbox_inches='tight'
         )
+
+        # export to Excel
+        ExcelManager(
+            save_folder_path=save_folder_path,
+            export_name="datas.xlsx",
+            ratio_type=ratio_type,
+            avg_max_stress_list=avg_max_stress_list,
+            avg_max_em_list=avg_max_em_list,
+            specimens_datas=specimens_datas
+        ).export()
 
         # OK
         msgBox = QMessageBox()

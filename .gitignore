@@ -1,7 +1,10 @@
 venv/
 src/test/
 .ipynb_checkpoints
-
 test.ipynb
-output/test
 src/__pycache__
+
+output/*
+!output/MTS_WTF/
+
+TODO.md

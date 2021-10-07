@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
@@ -25,12 +26,11 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.uic import loadUi
 from UI_Manager import UI
-import os
+
+os.chdir("./src")
 
 app = QApplication(sys.argv)
 app.setStyle("Fusion")
-# w = loadUi('MTS.ui')
 ui = UI('MTS.ui')
 ui.show()
-# w.show()
 app.exec_()
