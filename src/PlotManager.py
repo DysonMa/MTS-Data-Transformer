@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from PIL import Image
 from PyQt5.QtGui import (
     QPixmap,
@@ -127,32 +128,67 @@ class PlotManager():
         return (ratio_type, exNum)
 
     def get_area(self):
-        return self.validator.validate_specimen_size_and_get_area()
+        if self.w.cylinder_checkbox.isChecked():
+            area = np.pi/4*10**2
+        elif self.w.cube_checkbox.isChecked():
+            area = 5**2
+        else:
+            QMessageBox.critical(self.w, 'Error', "沒有選試體尺寸!",
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
+        return area
 
-    def plot(self):
-        # self.validator.validate()
-        self.area = self.get_area()
+    def get_plot_args_1(self, specimens_data):
+        return {
+            "info": {
+                "title": "Data_All",
+                "specimen_name": specimens_data["name"]
+            },
+            "datas": {
+                "strain_list": specimens_data["info"]["strain"][
+                    "data"],
+                "stress_list": specimens_data["info"]["stress"]["data"]
+            }
+        }
 
-        dataManager = DataManager("../datas/specimen.txt")
+    def get_plot_args_2(self, specimens_data):
+        return {
+            "info": {
+                "title": "Data_Until_Max",
+                "specimen_name": specimens_data["name"]
+            },
+            "datas": {
+                "x": specimens_data["info"]["elastic_modulus"]["data"]["x"],
+                "y": specimens_data["info"]["elastic_modulus"]["data"]["y"],
+                "slope": specimens_data["info"]["elastic_modulus"]["data"]["slope"],
+                "intercept": specimens_data["info"]["elastic_modulus"]["data"]["intercept"]
+            }
+        }
 
-        ratio_type, exNum = self.get_ratio_type_and_exNum_from_input()
-        specimens_datas = dataManager.get_specimen_datas_json(self.area)
-        ratio_type_labels = dataManager.get_ratio_type_labels(
-            ratio_type,
-            exNum
-        )
+    def plot(self, **kwargs):
+
+        # get datas
+        specimens_datas = kwargs["specimens_datas"]
+        ratio_type = kwargs["ratio_type"]
+        exNum = kwargs["exNum"]
+        exNum_ids = kwargs["exNum_ids"]
+        max_stress_list = kwargs["max_stress_list"]
+        avg_max_stress_list = kwargs["avg_max_stress_list"]
+        max_em_list = kwargs["max_em_list"]
+        avg_max_em_list = kwargs["avg_max_em_list"]
 
         # set save folder path
+        folder_name = "output"
+        folder_path = os.path.realpath(f"../{folder_name}")
         save_folder_name = self.w.save_file_name_input.text()
-        folder_path = get_folder_path("output")
-        save_folder_path = get_file_path(folder_path, save_folder_name)
+        save_folder_path = os.path.join(folder_path, save_folder_name)
         if not os.path.isdir(save_folder_path):
             os.mkdir(save_folder_path)
 
         # set a bigger figure
         bigger_fig, bigger_ax = plt.subplots(
-            len(specimens_datas),
-            2,
+            nrows=len(specimens_datas),
+            ncols=2,
             figsize=(11.5, 3.3*len(specimens_datas))
         )
         plt.tight_layout(pad=3.5)
@@ -163,42 +199,16 @@ class PlotManager():
 
         # stress-strain curve & elastic modulus
         for i, specimens_data in enumerate(specimens_datas):
-            strain_list, stress_list = specimens_data["info"]["strain"][
-                "data"], specimens_data["info"]["stress"]["data"]
 
-            plot_args_1 = {
-                "info": {
-                    "title": "Data_All",
-                    "specimen_name": specimens_data["name"]
-                },
-                "datas": {
-                    "strain_list": strain_list,
-                    "stress_list": stress_list
-                }
-            }
-
-            plot_args_2 = {
-                "info": {
-                    "title": "Data_Until_Max",
-                    "specimen_name": specimens_data["name"]
-                },
-                "datas": {
-                    "x": specimens_data["info"]["elastic_modulus"]["data"]["x"],
-                    "y": specimens_data["info"]["elastic_modulus"]["data"]["y"],
-                    "slope": specimens_data["info"]["elastic_modulus"]["data"]["slope"],
-                    "intercept": specimens_data["info"]["elastic_modulus"]["data"]["intercept"]
-                }
-            }
+            plot_args_1 = self.get_plot_args_1(specimens_data)
+            plot_args_2 = self.get_plot_args_2(specimens_data)
 
             # stress-strain curve
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
             self.ax_plot(ax1, "stress_strain_curve", **plot_args_1)
             self.ax_plot(ax2, "elastic_modulus", **plot_args_2)
             fig.savefig(
-                get_file_path(
-                    save_folder_path,
-                    f"figure_{str(i+1)}.png"
-                )
+                os.path.join(save_folder_path, f"figure_{str(i+1)}.png")
             )
 
             plt.clf()       # clear the entire current figure
@@ -214,48 +224,30 @@ class PlotManager():
             self.w.progressBar.setValue(round(progress))
 
         # save bigger figure
-        bigger_figure_path = get_file_path(
-            save_folder_path,
-            "fig_All.png"
-        )
-        bigger_fig.savefig(
-            bigger_figure_path,
-            dpi=100
-        )
+        bigger_figure_path = os.path.join(save_folder_path, "fig_All.png")
+        bigger_fig.savefig(bigger_figure_path, dpi=100)
 
         # avg max compressive strength
-        avg_max_stress_list = dataManager.get_avg_max_stress_per_group(
-            specimens_datas,
-            exNum
-        )
         self.plot_bar(
             x=ratio_type,
             y=avg_max_stress_list,
             title=self.w.comp_title_input.text() or "Compressive Strength"
         )
-        avg_max_stress_figure_path = get_file_path(
-            save_folder_path,
-            "Compressive Strength.png"
-        )
+        avg_max_stress_figure_path = os.path.join(
+            save_folder_path, "Compressive Strength.png")
         plt.savefig(
             avg_max_stress_figure_path,
             bbox_inches='tight'
         )
 
         # avg max elastic modulus
-        avg_max_em_list = dataManager.get_avg_max_em_per_group(
-            specimens_datas,
-            exNum
-        )
         self.plot_bar(
             x=ratio_type,
             y=avg_max_em_list,
             title=self.w.em_title_input.text() or "Elastic modulus"
         )
-        avg_max_em_figure_path = get_file_path(
-            save_folder_path,
-            "Elastic modulus.png"
-        )
+        avg_max_em_figure_path = os.path.join(
+            save_folder_path, "Elastic modulus.png")
         plt.savefig(
             avg_max_em_figure_path,
             bbox_inches='tight'
@@ -266,12 +258,16 @@ class PlotManager():
             save_folder_path=save_folder_path,
             export_name="datas.xlsx",
             ratio_type=ratio_type,
+            exNum=exNum,
+            exNum_ids=exNum_ids,
+            max_stress_list=max_stress_list,
             avg_max_stress_list=avg_max_stress_list,
+            max_em_list=max_em_list,
             avg_max_em_list=avg_max_em_list,
             specimens_datas=specimens_datas
         ).export()
 
-        # OK
+        # Success
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
         msgBox.setText("Success")

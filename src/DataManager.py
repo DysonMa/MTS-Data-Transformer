@@ -1,25 +1,26 @@
 import numpy as np
 from Utilities import linear_regression
 from scipy.optimize import curve_fit
+from typing import List, Tuple
 
 
 class DataManager():
     def __init__(self, input_fileName):
         self.input_fileName = input_fileName
 
-    def read_input_file(self):
+    def read_input_file(self) -> List:
         with open(self.input_fileName, 'r', encoding="utf-8") as f:
             specimens = f.read().split('\n\n')
             specimens.pop(0)
             return specimens
 
-    def get_ratio_type_labels(self, ratio_type, exNum):
-        ratio_type_labels = []
-        for i in range(len(ratio_type)):
-            ratio_type_labels.extend([ratio_type[i]]*exNum[i])
-        return ratio_type_labels
+    # def get_ratio_type_labels(self, ratio_type, exNum):
+    #     ratio_type_labels = []
+    #     for i in range(len(ratio_type)):
+    #         ratio_type_labels.extend([ratio_type[i]]*exNum[i])
+    #     return ratio_type_labels
 
-    def get_exNum_ids(self, exNum):
+    def get_exNum_ids(self, exNum: List) -> List:
         '''
         exNum: [3, 3, 3, 3, 3, 3, 3, 2] 
         exNum_ids: [0, 3, 6, 9, 12, 15, 18, 21, 23]
@@ -31,11 +32,12 @@ class DataManager():
             exNum_ids.append(initial_num)
         return exNum_ids
 
-    def get_specimen_datas_json(self, area):
+    def get_specimen_datas_json(self, area: float) -> List:
         specimens = self.read_input_file()
         self.specimens_num = len(specimens)
-        if not self.specimens_num:
-            print("Error")
+        if self.specimens_num == 0:
+            raise Exception("specimen number is zero!")
+
         specimens_datas = []
         for Id in range(self.specimens_num):
             data_per_specimen = specimens[Id].split(
@@ -103,7 +105,7 @@ class DataManager():
             })
         return specimens_datas
 
-    def get_curve_fitting_datas(self, strain_list, stress_list):
+    def get_curve_fitting_datas(self, strain_list: List, stress_list: List) -> Tuple:
         lower_point = min(strain_list,
                           key=lambda x: abs(x-0.00005))
         lower_point_index = strain_list.index(lower_point)
@@ -118,21 +120,21 @@ class DataManager():
 
         return x, y, slope, intercept
 
-    def get_max_stress_list(self, specimens_datas):
+    def get_max_stress_list(self, specimens_datas: List) -> List:
         max_stress_list = []
-        for i, specimens_data in enumerate(specimens_datas):
+        for specimens_data in specimens_datas:
             max_stress = max(specimens_data["info"]["stress"]["data"])
             max_stress_list.append(max_stress)
         return max_stress_list
 
-    def get_max_em_list(self, specimens_datas):
+    def get_max_em_list(self, specimens_datas: List) -> List:
         max_em_list = []
-        for i, specimens_data in enumerate(specimens_datas):
+        for specimens_data in specimens_datas:
             max_em = specimens_data["info"]["elastic_modulus"]["data"]["slope"]
             max_em_list.append(max_em)
         return max_em_list
 
-    def get_avg_max_stress_per_group(self, specimens_datas, exNum):
+    def get_avg_max_stress_per_group(self, specimens_datas: List, exNum: List) -> List:
         max_stress_list = self.get_max_stress_list(specimens_datas)
         exNum_ids = self.get_exNum_ids(exNum)
         avg_max_stress_list = []
@@ -144,7 +146,7 @@ class DataManager():
             )
         return avg_max_stress_list
 
-    def get_avg_max_em_per_group(self, specimens_datas, exNum):
+    def get_avg_max_em_per_group(self, specimens_datas: List, exNum: List) -> List:
         max_em_list = self.get_max_em_list(specimens_datas)
         exNum_ids = self.get_exNum_ids(exNum)
         avg_em_list = []
