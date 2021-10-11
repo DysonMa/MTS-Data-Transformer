@@ -4,23 +4,23 @@ from scipy.optimize import curve_fit
 from typing import List, Tuple
 
 
-class DataManager():
-    def __init__(self, input_fileName):
-        self.input_fileName = input_fileName
+class DataManager:
+    def __init__(self, input_file_name: str) -> None:
+        self.input_file_name = input_file_name
 
-    def read_input_file(self) -> List:
-        with open(self.input_fileName, 'r', encoding="utf-8") as f:
+    def __read_input_file(self) -> List:
+        with open(self.input_file_name, 'r', encoding="utf-8") as f:
             specimens = f.read().split('\n\n')
             specimens.pop(0)
             return specimens
 
-    # def get_ratio_type_labels(self, ratio_type, exNum):
-    #     ratio_type_labels = []
-    #     for i in range(len(ratio_type)):
-    #         ratio_type_labels.extend([ratio_type[i]]*exNum[i])
-    #     return ratio_type_labels
+    def __get_ratio_type_labels(self, ratio_type: List, exNum: List) -> List:
+        ratio_type_labels = []
+        for i in range(len(ratio_type)):
+            ratio_type_labels.extend([ratio_type[i]]*exNum[i])
+        return ratio_type_labels
 
-    def get_exNum_ids(self, exNum: List) -> List:
+    def __get_exNum_ids(self, exNum: List) -> List:
         '''
         exNum: [3, 3, 3, 3, 3, 3, 3, 2] 
         exNum_ids: [0, 3, 6, 9, 12, 15, 18, 21, 23]
@@ -32,14 +32,16 @@ class DataManager():
             exNum_ids.append(initial_num)
         return exNum_ids
 
-    def get_specimen_datas_json(self, area: float) -> List:
-        specimens = self.read_input_file()
-        self.specimens_num = len(specimens)
-        if self.specimens_num == 0:
-            raise Exception("specimen number is zero!")
+    def __get_specimen_datas_json(self, area: float, ratio_type: List, exNum: List) -> List:
+        specimens = self.__read_input_file()
+        ratio_type_labels = self.__get_ratio_type_labels(ratio_type, exNum)
+
+        # validate numbers
+        if len(ratio_type_labels) != len(specimens):
+            raise Exception("資料筆數與輸入數量不符合!")
 
         specimens_datas = []
-        for Id in range(self.specimens_num):
+        for Id in range(len(specimens)):
             data_per_specimen = specimens[Id].split(
                 "Sec\tmm\tN\tmm\tmm\tsegments\n"
             )[-1]
@@ -61,12 +63,12 @@ class DataManager():
                     strain_list.append(strain)
                     stress_list.append(stress)
 
-            x, y, slope, intercept = self.get_curve_fitting_datas(
+            x, y, slope, intercept = self.__get_curve_fitting_datas(
                 strain_list, stress_list)
 
             specimens_datas.append({
                 "id": Id+1,
-                "name": str(Id+1),  # TODO
+                "name": ratio_type_labels[Id],
                 "info": {
                     "displacement": {
                         "unit": "mm",
@@ -105,7 +107,7 @@ class DataManager():
             })
         return specimens_datas
 
-    def get_curve_fitting_datas(self, strain_list: List, stress_list: List) -> Tuple:
+    def __get_curve_fitting_datas(self, strain_list: List, stress_list: List) -> Tuple:
         lower_point = min(strain_list,
                           key=lambda x: abs(x-0.00005))
         lower_point_index = strain_list.index(lower_point)
@@ -120,23 +122,23 @@ class DataManager():
 
         return x, y, slope, intercept
 
-    def get_max_stress_list(self, specimens_datas: List) -> List:
+    def __get_max_stress_list(self, specimens_datas: List) -> List:
         max_stress_list = []
         for specimens_data in specimens_datas:
             max_stress = max(specimens_data["info"]["stress"]["data"])
             max_stress_list.append(max_stress)
         return max_stress_list
 
-    def get_max_em_list(self, specimens_datas: List) -> List:
+    def __get_max_em_list(self, specimens_datas: List) -> List:
         max_em_list = []
         for specimens_data in specimens_datas:
             max_em = specimens_data["info"]["elastic_modulus"]["data"]["slope"]
             max_em_list.append(max_em)
         return max_em_list
 
-    def get_avg_max_stress_per_group(self, specimens_datas: List, exNum: List) -> List:
-        max_stress_list = self.get_max_stress_list(specimens_datas)
-        exNum_ids = self.get_exNum_ids(exNum)
+    def __get_avg_max_stress_per_group(self, specimens_datas: List, exNum: List) -> List:
+        max_stress_list = self.__get_max_stress_list(specimens_datas)
+        exNum_ids = self.__get_exNum_ids(exNum)
         avg_max_stress_list = []
         for i in range(1, len(exNum_ids)):
             start_id = exNum_ids[i-1]
@@ -146,9 +148,9 @@ class DataManager():
             )
         return avg_max_stress_list
 
-    def get_avg_max_em_per_group(self, specimens_datas: List, exNum: List) -> List:
-        max_em_list = self.get_max_em_list(specimens_datas)
-        exNum_ids = self.get_exNum_ids(exNum)
+    def __get_avg_max_em_per_group(self, specimens_datas: List, exNum: List) -> List:
+        max_em_list = self.__get_max_em_list(specimens_datas)
+        exNum_ids = self.__get_exNum_ids(exNum)
         avg_em_list = []
         for i in range(1, len(exNum_ids)):
             start_id = exNum_ids[i-1]
@@ -157,3 +159,29 @@ class DataManager():
                 sum(max_em_list[start_id:end_id])/(end_id - start_id)
             )
         return avg_em_list
+
+   # public method
+    def get_datas(self, payload):
+        specimens_datas = self.__get_specimen_datas_json(
+            payload["area"], payload["ratio_type"], payload["exNum"])
+        exNum_ids = self.__get_exNum_ids(payload["exNum"])
+        max_stress_list = self.__get_max_stress_list(specimens_datas)
+        avg_max_stress_list = self.__get_avg_max_stress_per_group(
+            specimens_datas,
+            payload["exNum"]
+        )
+        max_em_list = self.__get_max_em_list(specimens_datas)
+        avg_max_em_list = self.__get_avg_max_em_per_group(
+            specimens_datas,
+            payload["exNum"]
+        )
+        return {
+            "specimens_datas": specimens_datas,
+            "ratio_type": payload["ratio_type"],
+            "exNum": payload["exNum"],
+            "exNum_ids": exNum_ids,
+            "max_stress_list": max_stress_list,
+            "avg_max_stress_list": avg_max_stress_list,
+            "max_em_list": max_em_list,
+            "avg_max_em_list": avg_max_em_list
+        }

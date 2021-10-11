@@ -25,380 +25,514 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>11</y>
+     <width>1452</width>
+     <height>922</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1452</width>
+     <height>922</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1600</width>
+     <height>922</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideNone</enum>
+   </property>
+   <property name="usesScrollButtons">
+    <bool>true</bool>
+   </property>
+   <property name="documentMode">
+    <bool>false</bool>
+   </property>
+   <property name="tabsClosable">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="tabBarAutoHide">
+    <bool>false</bool>
+   </property>
+   <widget class="QWidget" name="tab_1">
+    <attribute name="title">
+     <string>處理數據</string>
+    </attribute>
+    <widget class="QPushButton" name="select_input_file_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>1452</width>
-       <height>922</height>
+       <width>75</width>
+       <height>23</height>
       </size>
+     </property>
+     <property name="text">
+      <string>選擇輸入文件</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="path_txt">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>20</y>
+       <width>555</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="cube_checkbox">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>80</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>89</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Cube (5*5*5)</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="cylinder_checkbox">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>80</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>105</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Cylinder (10*20)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ratio_type_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>105</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>配比種類數量:</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="graphicsView_all">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>130</y>
+       <width>1131</width>
+       <height>391</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="ratio_widget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>281</width>
+       <height>751</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>221</width>
+       <height>428</height>
+      </size>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="rowCount">
+      <number>0</number>
+     </property>
+     <property name="columnCount">
+      <number>2</number>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>配比種類</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>配比數量</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QGraphicsView" name="graphicsView_comp">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>571</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="graphicsView_em">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>571</y>
+       <width>551</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="save_folder_label">
+     <property name="geometry">
+      <rect>
+       <x>720</x>
+       <y>20</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>輸入存檔資料夾名稱:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="save_file_name_input">
+     <property name="geometry">
+      <rect>
+       <x>870</x>
+       <y>23</y>
+       <width>171</width>
+       <height>27</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="comp_label">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>535</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>輸入抗壓強度的圖標題 (optional)</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="comp_title_input">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>535</y>
+       <width>351</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>預設: Compressive Strength</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="em_label">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>535</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>輸入楊氏係數的圖標題 (optional)</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="em_title_input">
+     <property name="geometry">
+      <rect>
+       <x>1100</x>
+       <y>535</y>
+       <width>331</width>
+       <height>25</height>
+      </rect>
      </property>
      <property name="maximumSize">
       <size>
-       <width>1600</width>
-       <height>922</height>
+       <width>380</width>
+       <height>25</height>
       </size>
      </property>
-     <property name="currentIndex">
+     <property name="placeholderText">
+      <string>預設: Elastic Modulus</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>720</x>
+       <y>80</y>
+       <width>711</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="value">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_1">
-      <attribute name="title">
-       <string>處理數據</string>
-      </attribute>
-      <widget class="QPushButton" name="select_input_file_btn">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>23</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>選擇輸入文件</string>
-       </property>
-       <property name="checkable">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QTextBrowser" name="path_txt">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>20</y>
-         <width>555</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>500</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-       <property name="placeholderText">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="cube_checkbox">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>80</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>89</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Cube (5*5*5)</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="cylinder_checkbox">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>80</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>105</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Cylinder (10*20)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="ratio_type_label">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>80</y>
-         <width>105</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>配比種類數量:</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_all">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>130</y>
-         <width>1161</width>
-         <height>391</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QTableWidget" name="ratio_widget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>271</width>
-         <height>751</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>221</width>
-         <height>428</height>
-        </size>
-       </property>
-       <property name="lineWidth">
-        <number>1</number>
-       </property>
-       <property name="rowCount">
-        <number>0</number>
-       </property>
-       <property name="columnCount">
-        <number>2</number>
-       </property>
-       <attribute name="horizontalHeaderCascadingSectionResizes">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderStretchLastSection">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>true</bool>
-       </attribute>
-       <column>
-        <property name="text">
-         <string>配比種類</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>配比數量</string>
-        </property>
-       </column>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_comp">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>571</y>
-         <width>591</width>
-         <height>311</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_em">
-       <property name="geometry">
-        <rect>
-         <x>890</x>
-         <y>571</y>
-         <width>561</width>
-         <height>311</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="save_folder_label">
-       <property name="geometry">
-        <rect>
-         <x>720</x>
-         <y>20</y>
-         <width>151</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>輸入存檔資料夾名稱:</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="save_file_name_input">
-       <property name="geometry">
-        <rect>
-         <x>870</x>
-         <y>23</y>
-         <width>171</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="comp_label">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>535</y>
-         <width>211</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>輸入抗壓強度的圖標題 (optional)</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="comp_title_input">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>535</y>
-         <width>371</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="placeholderText">
-        <string>預設: Compressive Strength</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="em_label">
-       <property name="geometry">
-        <rect>
-         <x>890</x>
-         <y>535</y>
-         <width>221</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>輸入楊氏係數的圖標題 (optional)</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="em_title_input">
-       <property name="geometry">
-        <rect>
-         <x>1110</x>
-         <y>535</y>
-         <width>341</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>380</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="placeholderText">
-        <string>預設: Elastic Modulus</string>
-       </property>
-      </widget>
-      <widget class="QProgressBar" name="progressBar">
-       <property name="geometry">
-        <rect>
-         <x>720</x>
-         <y>80</y>
-         <width>731</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>180</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="ratio_num_spinbox">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>80</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>37</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="plot_btn">
-       <property name="geometry">
-        <rect>
-         <x>1060</x>
-         <y>20</y>
-         <width>351</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>150</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>匯出 Excel 與 Plots</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="custom_area_checkbox">
-       <property name="geometry">
-        <rect>
-         <x>550</x>
-         <y>80</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>105</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="custom_area_input">
-       <property name="geometry">
-        <rect>
-         <x>576</x>
-         <y>82</y>
-         <width>121</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>自訂面積 [cm^2]</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>匯入檔案來繪圖</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout"/>
-     </widget>
     </widget>
-   </item>
-  </layout>
+    <widget class="QSpinBox" name="ratio_num_spinbox">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>80</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>37</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="plot_btn">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>20</y>
+       <width>371</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>匯出 Excel 與 Plots</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="custom_area_checkbox">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>80</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>105</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="custom_area_input">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>576</x>
+       <y>82</y>
+       <width>121</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
+     <property name="placeholderText">
+      <string>自訂面積 [cm^2]</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>關於</string>
+    </attribute>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>251</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Bodoni MT</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Author: madihsiang (R07)</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>291</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Bodoni MT</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Advisor: Chan, Yin-Wen, Ph.D.</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>231</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Bodoni MT</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Detail Info:  &lt;a href=&quot;https://github.com/DysonMa/MTS-Data-Transformer/&quot;&gt;GitHub Repo&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

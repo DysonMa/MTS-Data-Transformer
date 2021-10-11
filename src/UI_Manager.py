@@ -1,128 +1,139 @@
+from typing import Union, List, Tuple
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import (
-    QMainWindow,
     QWidget,
     QFileDialog,
-    QPushButton,
-    QTableWidget,
-    QSpinBox,
     QMessageBox,
 )
 import numpy as np
 import os
 
-from PlotManager import PlotManager
+from PlotManager import *
 from DataManager import DataManager
+from ThreadManager import PlotWorker
 
 
 class UI(QWidget):
-    def __init__(self, UI_FileName):
+    def __init__(self, UI_FileName) -> None:
         super().__init__()
         loadUi(UI_FileName, self)
 
         self.input_file_name = None
-        self.setWindowTitle('MTSDataProcess')
-        self.plotManager = PlotManager(self)
-        self.plotManager.Initial_layout_Figure()
 
+        self.setWindowTitle('MTS Data Transformer')
+        Initial_layout_Figure(self)
+
+        # connect funcs to widgets
+        self.custom_area_checkbox.toggled.connect(
+            self.custom_area_input.setEnabled)
         self.select_input_file_btn.clicked.connect(self.read_input_file)
         self.ratio_num_spinbox.valueChanged.connect(self.change_row)
         self.plot_btn.clicked.connect(self.plot)
 
-    def get_datas(self):
-        dataManager = DataManager(self.input_file_name)
-        specimens_datas = dataManager.get_specimen_datas_json(self.get_area())
+    def get_datas(self) -> Dict:
         ratio_type, exNum = self.get_ratio_type_and_exNum_from_input()
-        exNum_ids = dataManager.get_exNum_ids(exNum)
-        max_stress_list = dataManager.get_max_stress_list(specimens_datas)
-        avg_max_stress_list = dataManager.get_avg_max_stress_per_group(
-            specimens_datas,
-            exNum
-        )
-        max_em_list = dataManager.get_max_em_list(specimens_datas)
-        avg_max_em_list = dataManager.get_avg_max_em_per_group(
-            specimens_datas,
-            exNum
-        )
-        return (
-            specimens_datas,
-            ratio_type,
-            exNum,
-            exNum_ids,
-            max_stress_list,
-            avg_max_stress_list,
-            max_em_list,
-            avg_max_em_list
-        )
+        payload = {
+            "area": self.get_area(),
+            "ratio_type": ratio_type,
+            "exNum": exNum
+        }
+        dataManager = DataManager(self.input_file_name)
+        return dataManager.get_datas(payload)
 
-    def get_ratio_type_and_exNum_from_input(self):
+    def get_ratio_type_and_exNum_from_input(self) -> Tuple:
         ratio_type, exNum = [], []
         for i in range(self.ratio_widget.rowCount()):
-            if self.ratio_widget.item(i, 0) == None:
-                QMessageBox.critical(
-                    self,
-                    'Error',
-                    "配比種類沒有完整輸入!",
-                    QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes
-                )
-                return
-            # TODO: add ratio_type validator
+            if self.ratio_widget.item(i, 0) == None or self.ratio_widget.item(i, 0).text() == "":
+                raise Exception("配比種類輸入不正確!")
+            if self.ratio_widget.item(i, 1) == None or not self.ratio_widget.item(i, 1).text().isdigit():
+                raise Exception("配比數量輸入不正確!")
             ratio_type.append(self.ratio_widget.item(i, 0).text())
-            # TODO: add exNum validator
             exNum.append(int(self.ratio_widget.item(i, 1).text()))
+        if ratio_type == [] or exNum == []:
+            raise Exception("配比種類數量為零!")
         return (ratio_type, exNum)
 
-    def get_area(self):
+    def get_area(self) -> Union[float, int]:
+        # cylinder
         if self.cylinder_checkbox.isChecked():
-            area = np.pi/4*10**2
+            return np.pi/4*10**2
+        # cube
         elif self.cube_checkbox.isChecked():
-            area = 5**2
-        elif self.custom_area_checkbox.isChecked():
-            area = self.custom_area_input.text()
+            return 5**2
+        # custom area
+        elif self.custom_area_checkbox.isChecked() and self.custom_area_input != "":
+            return float(self.custom_area_input.text())
         else:
-            QMessageBox.critical(self, 'Error', "沒有選試體尺寸!",
-                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-            return
-        return area
+            raise Exception("沒有正確輸入試體尺寸!")
 
-    def plot(self):
-        (specimens_datas,
-         ratio_type,
-         exNum,
-         exNum_ids,
-         max_stress_list,
-         avg_max_stress_list,
-         max_em_list,
-         avg_max_em_list) = self.get_datas()
-        return self.plotManager.plot(
-            specimens_datas=specimens_datas,
-            ratio_type=ratio_type,
-            exNum=exNum,
-            exNum_ids=exNum_ids,
-            max_stress_list=max_stress_list,
-            avg_max_stress_list=avg_max_stress_list,
-            max_em_list=max_em_list,
-            avg_max_em_list=avg_max_em_list
-        )
-
-    def read_input_file(self):
+    def read_input_file(self) -> None:
         self.input_file_name, filetype = QFileDialog.getOpenFileName(
-            self, "選取檔案", "", "txt file(*.txt)", None
+            self, "選取檔案", "../datas/", "txt file(*.txt)",
         )
-        if self.input_file_name == '':
-            return
         self.path_txt.setText(self.input_file_name)
 
-    def change_row(self):
+    def change_row(self) -> None:
         self.ratio_widget.setRowCount(self.ratio_num_spinbox.value())
 
-    # def save_folder(self):
-    #     # global PathFile
-    #     PathFile = QFileDialog.getExistingDirectory(self, "選取資料夾", "")
-    #     if PathFile == '':
-    #         return
-    #     self.savePathTxt.setText(PathFile)
+    def finish(self, path: Dict) -> None:
+        # message box
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Success")
+        msgBox.setWindowTitle("Congratulation")
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        msgBox.exec()
 
-    # utility
-    def add_percentage_label(self, labeledElement, value):
-        labeledElement.setText(str(value)+"%")
+        # put the figures on the canvas
+        layout_Figure(
+            path["bigger_figure_path"], self.graphicsView_all)
+        layout_Figure(
+            path["avg_max_stress_figure_path"], self.graphicsView_comp)
+        layout_Figure(
+            path["avg_max_em_figure_path"], self.graphicsView_em)
+
+        # enable plot button
+        self.plot_btn.setEnabled(True)
+
+    def update_progressbar(self, value: int) -> None:
+        self.progressBar.setValue(value)
+
+    def plot(self) -> None:
+        try:
+            # validate input file path
+            if not self.input_file_name:
+                raise Exception("輸入資料路徑為空!")
+
+            # process datas
+            datas = self.get_datas()
+
+            # validate datas
+            if len(datas["specimens_datas"]) == 0:
+                raise Exception("輸入資料筆數為零!")
+            if self.save_file_name_input.text() == "":
+                raise Exception("存檔資料夾的名稱為空!")
+
+            # set save folder path
+            folder_name = "output"
+            folder_path = os.path.realpath(f"../{folder_name}")
+            save_folder_name = self.save_file_name_input.text()
+            save_folder_path = os.path.join(folder_path, save_folder_name)
+            if not os.path.isdir(save_folder_path):
+                os.mkdir(save_folder_path)
+
+            # add additional datas
+            datas["comp_title"] = self.comp_title_input.text()
+            datas["em_title"] = self.em_title_input.text()
+            datas["save_folder_path"] = save_folder_path
+
+            # execute PlotWorker thread
+            Initial_layout_Figure(self)  # initialize all canvas
+            self.plot_btn.setEnabled(False)  # disable plot button
+            self.plotWorker = PlotWorker(datas)
+            self.plotWorker.start()
+            self.plotWorker.trigger.connect(self.update_progressbar)
+            self.plotWorker.finish.connect(self.finish)
+
+        except Exception as e:
+            QMessageBox.critical(self, 'Error', str(
+                e), QMessageBox.Yes | QMessageBox.Yes)
