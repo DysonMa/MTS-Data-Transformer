@@ -446,7 +446,7 @@
       <rect>
        <x>30</x>
        <y>30</y>
-       <width>251</width>
+       <width>281</width>
        <height>41</height>
       </rect>
      </property>
@@ -459,7 +459,7 @@
      <property name="font">
       <font>
        <family>Bodoni MT</family>
-       <pointsize>12</pointsize>
+       <pointsize>15</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -476,7 +476,7 @@
       <rect>
        <x>30</x>
        <y>80</y>
-       <width>291</width>
+       <width>341</width>
        <height>41</height>
       </rect>
      </property>
@@ -489,7 +489,7 @@
      <property name="font">
       <font>
        <family>Bodoni MT</family>
-       <pointsize>12</pointsize>
+       <pointsize>15</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -506,7 +506,7 @@
       <rect>
        <x>30</x>
        <y>130</y>
-       <width>231</width>
+       <width>571</width>
        <height>41</height>
       </rect>
      </property>
@@ -519,13 +519,13 @@
      <property name="font">
       <font>
        <family>Bodoni MT</family>
-       <pointsize>12</pointsize>
+       <pointsize>15</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
      <property name="text">
-      <string>Detail Info:  &lt;a href=&quot;https://github.com/DysonMa/MTS-Data-Transformer/&quot;&gt;GitHub Repo&lt;/a&gt;</string>
+      <string> Tutorial: &lt;a href=&quot;https://github.com/DysonMa/MTS-Data-Transformer/&quot;&gt;How to use this? &lt;/a&gt; (Right click and copy link)</string>
      </property>
      <property name="openExternalLinks">
       <bool>false</bool>
