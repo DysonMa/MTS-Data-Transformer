@@ -57,8 +57,8 @@
 ## How to use it?
 
 1. `cd MTS_Data_Transformer`
-2. create virtual env (optional)
-3. `pip install requirements`
+2. create virtual env (optional)  --> `virtaulenv venv` and `.\venv\Scripts\activate.bat`
+3. `pip install -r requirements`
 4. `python main.py`
 5. Initial picture looks like this
 
