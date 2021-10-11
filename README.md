@@ -10,7 +10,7 @@
 
 > Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully.
 >
-> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe builded by PyQt5!
+> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the code builded by PyQt5!
 
 ## Features
 
