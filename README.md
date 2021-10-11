@@ -59,7 +59,7 @@
 1. `cd MTS_Data_Transformer`
 2. create virtual env (optional)  --> `virtaulenv venv` and `.\venv\Scripts\activate.bat`
 3. `pip install -r requirements`
-4. `python main.py`
+4. `python ./src/main.py`
 5. Initial picture looks like this
 
    ![demo1](./demo/demo1.PNG)
