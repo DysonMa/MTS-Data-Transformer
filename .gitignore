@@ -4,8 +4,7 @@ src/test/
 test.ipynb
 src/__pycache__
 
-output/*
-!output/MTS_WTF/
+output/test*
 MTS_Log.log
 
 TODO.md
