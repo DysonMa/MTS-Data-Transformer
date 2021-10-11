@@ -7,16 +7,18 @@ from PyQt5.QtWidgets import (
 )
 import numpy as np
 import os
+import logging
 from PlotManager import *
 from DataManager import DataManager
 from ThreadManager import PlotWorker
 
 
 class MainWindow(QWidget):
-    def __init__(self, UI_FileName) -> None:
+    def __init__(self, ui_file_path) -> None:
         super().__init__()
-        loadUi(UI_FileName, self)
+        loadUi(ui_file_path, self)
 
+        self.current_dir = os.path.dirname(ui_file_path)
         self.input_file_name = None
 
         self.setWindowTitle('MTS Data Transformer')
@@ -67,7 +69,8 @@ class MainWindow(QWidget):
 
     def read_input_file(self) -> None:
         self.input_file_name, filetype = QFileDialog.getOpenFileName(
-            self, "選取檔案", "../input/", "txt file(*.txt)",
+            self, "選取檔案", os.path.join(
+                self.current_dir, "input"), "txt file(*.txt)",
         )
         self.path_txt.setText(self.input_file_name)
 
@@ -112,13 +115,18 @@ class MainWindow(QWidget):
             if self.save_file_name_input.text() == "":
                 raise Exception("存檔資料夾的名稱為空!")
 
-            # set save folder path
+            # set save folder path (output)
             folder_name = "output"
-            folder_path = os.path.realpath(f"../{folder_name}")
+            folder_path = os.path.join(self.current_dir, folder_name)
+            if folder_name not in os.listdir(self.current_dir):
+                os.mkdir(folder_path)
+            logging.debug(f"folder_path: {folder_path}")
+            # set save folder path (ex: test, test2, WTF_MTS...)
             save_folder_name = self.save_file_name_input.text()
             save_folder_path = os.path.join(folder_path, save_folder_name)
-            if not os.path.isdir(save_folder_path):
+            if save_folder_name not in os.listdir(folder_path):
                 os.mkdir(save_folder_path)
+            logging.debug(f"save_folder_path: {save_folder_path}")
 
             # add additional datas
             datas["comp_title"] = self.comp_title_input.text()
@@ -134,5 +142,6 @@ class MainWindow(QWidget):
             self.plotWorker.finish.connect(self.finish)
 
         except Exception as e:
+            logging.error("Catch an exception.", exc_info=True)
             QMessageBox.critical(self, 'Error', str(
                 e), QMessageBox.Yes | QMessageBox.Yes)

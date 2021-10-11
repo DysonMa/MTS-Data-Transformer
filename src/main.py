@@ -28,7 +28,15 @@ if __name__ == "__main__":
         format=FORMAT
     )
     try:
-        os.chdir("./src")
-        MTS("MTS.ui").run()
+        # determine if application is a script file or frozen exe
+        if getattr(sys, 'frozen', False):
+            application_path = os.path.dirname(sys.executable)
+        elif __file__:
+            application_path = os.path.dirname(__file__)
+
+        logging.debug(f"application_path: {application_path}")
+        ui_file_path = os.path.join(application_path, "MTS.ui")
+        logging.debug(f"ui_file_path: {ui_file_path}")
+        MTS(ui_file_path).run()
     except Exception as e:
         logging.error("Catch an exception.", exc_info=True)

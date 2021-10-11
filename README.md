@@ -10,7 +10,7 @@
 
 > Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully.
 >
-> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the code builded by PyQt5!
+> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe builded by PyQt5!
 
 ## Features
 
@@ -29,14 +29,17 @@
 ## Environment
 
 - Install Python first --> https://www.python.org/downloads/
-- This code use Python 3.8.5
+- Python 3.8.5
+- You can also run `main.exe` to simply execute the program
 
 ## Packages
 
 - matplotlib, seaborn
 - pyqt5
 - scipy
-- openpyxl...
+- openpyxl
+- logging
+- pyinstaller...
 
 ## Folder Structure
 
@@ -56,10 +59,14 @@
 
 ## How to use it?
 
+> TL;DR:
+>
+> Copy the `main.exe` and `MTS.ui` to any folder you want, and simply click the `main.exe` to start the journey!
+
 1. `cd MTS_Data_Transformer`
-2. create virtual env (optional)  --> `virtaulenv venv` and `.\venv\Scripts\activate.bat`
-3. `pip install -r requirements`
-4. `python ./src/main.py`
+2. create virtual env (optional) --> `virtaulenv venv` and `.\venv\Scripts\activate.bat`
+3. `pip install -r requirements` (optional)
+4. `python ./src/main.py` (optional) or simply click on `main.exe`
 5. Initial picture looks like this
 
    ![demo1](./demo/demo1.PNG)

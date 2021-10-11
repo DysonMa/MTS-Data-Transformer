@@ -3,8 +3,8 @@ src/test/
 .ipynb_checkpoints
 test.ipynb
 src/__pycache__
-
 output/test*
 MTS_Log.log
-
 TODO.md
+package/
+main.exe
