@@ -1,91 +1,105 @@
 # MTS Specimens Data Transformer
 
-https://github.com/DysonMa/MTS-Data-Transformer
+> This program is designed for graduate students who are currently studying at the NTU CE 812 lab.
 
->This program is designed for graduate students who are currently studying at the NTU CE 812 lab.
+<div style="display: flex; margin:20px">
+<img src="./demo/demo.PNG" style="margin: auto" alt="drawing" width="200px"/>
+</div>
 
-## What did this program solve?
+## What problem does this program solve?
 
-Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully. 
+> Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully.
+>
+> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe builded by PyQt5!
 
-Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe builded by PyQt5!
+## Features
+
+- Quickly calculate the results of all data and linear regression
+- Simple and easy-to-use interface
+- Error message box for any mistake
+- use `logging` package to record log
+- Export Excel with all the data and figures
+- use `PyQt5.QThread` to create another thread to calculate time-consuming tasks without affecting the GUI
 
 ## How to get it?
 
 - use `git` command to clone this repo
 - [Download as zip](https://github.com/DysonMa/MTS-Data-Transformer/archive/refs/heads/main.zip)
- 
+
 ## Environment
 
-- You don't need to install Python to execute `ElasticModulus_Test-UI.exe`
-- Support both Windows and Linux
+- Install Python first --> https://www.python.org/downloads/
+- This code use Python 3.8.5
 
 ## Packages
 
 - matplotlib, seaborn
-- PyQt5
-- Pandas
-- Numpy
-- Scipy
-- Xlsxwriter
+- pyqt5
+- scipy
+- openpyxl...
 
 ## Folder Structure
 
-- `datas`: datas comes from MTS
-- `EM_Test_Final`: `ElasticModulus_Test-UI.exe` is the only file you need to care about
-- `pictures`: for demo pictures
-- `src`: main code(not designed very well, maybe refactor it in the future)
+- `input`: input files comes from MTS
 - `output`: All the datas and plots are listed in this folder according to the folder name you named
+- `demo`: for demo pictures
+- `src`
+  - `main.py`: main code
+  - `QtManager.py`: PyQt5 main controller
+  - `DataManager.py`: Data processing
+  - `PlotManager.py`: Plot figures and canvas
+  - `ExcelManager.py`: Export Excel
+  - `ThreadManager.py`: Schedule threads(long time task)
+  - `Utilities.py`: other utility functions
+  - `MTS.ui`: ui file for outlook
+- `requirements`
 
 ## How to use it?
 
-1. Open the exe in the `EM_Test_Final` folder
-2. Click `ElasticModulus_Test-UI.exe` to start the program
-3. Initial picture looks like this 
+1. `cd MTS_Data_Transformer`
+2. create virtual env (optional)
+3. `pip install requirements`
+4. `python main.py`
+5. Initial picture looks like this
 
-    ![demo1](./pictures/demo1.PNG)
+   ![demo1](./demo/demo1.PNG)
 
-4. Click `Select` button on the upper left of the window to choose any file from MTS
+6. Click `選擇輸入文件` button on the upper left of the window to choose any file from MTS
 
-    > Choose `specimen.txt` for demo
+   > Choose `specimen.txt` for demo
 
-5. Choose specimen size(`Cube` or `Cylinder`)
+7. Key in a number for `配比種類數量` which means the number of ratio type
 
-    > Choose `Cylinder` for demo
+   > **<p.s> No blank fields allowed**
 
-6. Key in a number for `配比種類數量` which means the numbers of ratio type 
+   The datas below are just for demo, DO NOT take it seriously ^0^:
+   |配比種類|配比數量|
+   |:--:|:--:|
+   |0.25|5|
+   |0.35|5|
+   |0.45|5|
+   |0.55|5|
+   |0.87|3|
 
-    > **<p.s> The value of this field must be the same as the number of `配比種類數量`** 
+8. Choose specimen size (`Cube` or `Cylinder`) or you can key in a number in custom area
 
-    The datas below are just for demo, DO NOT take it seriously ^0^: 
-    |配比種類|配比數量|
-    |:--:|:--:|
-    |0.25|5|
-    |0.35|5|
-    |0.45|5|
-    |0.55|5|
-    |0.87|3|
+   > Choose `Cylinder` for demo
 
-7. Select a folder in `選擇檔案欲存入的位置` to save the output files
+9. Key in a folder name in `輸入存檔資料夾名稱` field to save the output files
 
-    > Select `output` folder for demo
+   > Enter `WTF_MTS` for demo
 
-8. Enter the save folder name in `輸入存檔名稱`
-    > Enter `WTF_MTS` for demo
+10. Click `匯出Excel與Plots` button to start the journey!
 
-9. Click `Plot and Export to Excel` button to start the journey!
+    ![demo2](./demo/demo2.PNG)
 
-    ![demo2](./pictures/demo2.PNG)
+11. All the data and figures are stored in save folder, i.e. `WTF_MTS`
 
-10. Change to `預覽數據` page for detail
-
-    ![demo3](./pictures/demo3.PNG)
-
-11. All the datas and figures are stored in save folder, i.e. `WTF_MTS`
+12. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
 
 ## Contact
 
-It's not designed very well and still exist some bugs to fix, so feel free to contact me if needed
+Feel free to contact me if needed
 
 - Author: madihsiang (R07)
 - Gmail: madihsiang@gmail.com

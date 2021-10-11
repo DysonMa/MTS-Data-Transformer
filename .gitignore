@@ -6,5 +6,6 @@ src/__pycache__
 
 output/*
 !output/MTS_WTF/
+MTS_Log.log
 
 TODO.md
