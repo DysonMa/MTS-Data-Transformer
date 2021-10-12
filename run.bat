@@ -1,2 +1,2 @@
 @echo off
-cmd /k "cd /d .\venv\Scripts & activate & cd /d ../../src & python main.py"
+cmd /c "cd /d .\venv\Scripts & activate & cd /d ../../src & python main.py"
