@@ -58,7 +58,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -129,7 +129,7 @@
     <widget class="QRadioButton" name="cube_checkbox">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>310</x>
        <y>80</y>
        <width>121</width>
        <height>31</height>
@@ -148,7 +148,7 @@
     <widget class="QRadioButton" name="cylinder_checkbox">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>460</x>
        <y>80</y>
        <width>121</width>
        <height>31</height>
@@ -344,9 +344,9 @@
     <widget class="QProgressBar" name="progressBar">
      <property name="geometry">
       <rect>
-       <x>720</x>
+       <x>810</x>
        <y>80</y>
-       <width>711</width>
+       <width>621</width>
        <height>31</height>
       </rect>
      </property>
@@ -398,7 +398,7 @@
     <widget class="QRadioButton" name="custom_area_checkbox">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>630</x>
        <y>80</y>
        <width>121</width>
        <height>31</height>
@@ -420,7 +420,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>576</x>
+       <x>656</x>
        <y>82</y>
        <width>121</width>
        <height>25</height>
@@ -446,7 +446,7 @@
       <rect>
        <x>30</x>
        <y>30</y>
-       <width>281</width>
+       <width>1151</width>
        <height>41</height>
       </rect>
      </property>
@@ -476,7 +476,7 @@
       <rect>
        <x>30</x>
        <y>80</y>
-       <width>341</width>
+       <width>1171</width>
        <height>41</height>
       </rect>
      </property>
@@ -506,7 +506,7 @@
       <rect>
        <x>30</x>
        <y>130</y>
-       <width>571</width>
+       <width>1211</width>
        <height>41</height>
       </rect>
      </property>

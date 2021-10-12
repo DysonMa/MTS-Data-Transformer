@@ -10,7 +10,7 @@
 
 > Traditionally, we use Excel as our data processing tool to calculate Elastic Modulus with linear regression, and find maximum compressive strength with functions in Excel manaully.
 >
-> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the exe builded by PyQt5!
+> Now, with this program, you can save the time of manual calculation and quickly get experimental data results by the code builded by PyQt5!
 
 ## Features
 
@@ -26,11 +26,10 @@
 - use `git` command to clone this repo
 - [Download as zip](https://github.com/DysonMa/MTS-Data-Transformer/archive/refs/heads/main.zip)
 
-## Environment
+## Requirements
 
-- Install Python first --> https://www.python.org/downloads/
-- Python 3.8.5
-- You can also run `main.exe` to simply execute the program
+- Install Python first (3.5+ is good) --> https://www.python.org/downloads/
+- This code use Python 3.8.5
 
 ## Packages
 
@@ -44,7 +43,7 @@
 ## Folder Structure
 
 - `input`: input files comes from MTS
-- `output`: All the datas and plots are listed in this folder according to the folder name you named
+- `output`: all the datas and plots are listed in this folder according to the folder name you named
 - `demo`: for demo pictures
 - `src`
   - `main.py`: main code
@@ -52,30 +51,31 @@
   - `DataManager.py`: Data processing
   - `PlotManager.py`: Plot figures and canvas
   - `ExcelManager.py`: Export Excel
-  - `ThreadManager.py`: Schedule threads(long time task)
-  - `Utilities.py`: other utility functions
-  - `MTS.ui`: ui file for outlook
-- `requirements`
+  - `ThreadManager.py`: Schedule threads(long time
+    task)
+  - `Utilities.py`: Other utility functions
+  - `MTS.ui`: UI file of appearance
+  - `requirements.txt`: List all related packages and their versions
+- `initialize.bat`
+- `run.bat`
 
 ## How to use it?
 
 > TL;DR:
 >
-> Copy the `main.exe` and `MTS.ui` to any folder you want, and simply click the `main.exe` to start the journey!
+> Click `initialize.bat` for the first time and click `run.bat` to start the journey!
 
-1. `cd MTS_Data_Transformer`
-2. create virtual env (optional) --> `virtaulenv venv` and `.\venv\Scripts\activate.bat`
-3. `pip install -r requirements` (optional)
-4. `python ./src/main.py` (optional) or simply click on `main.exe`
-5. Initial picture looks like this
+1. Run `initialize.bat` for the first time to install all related packages (ONLY the first time)
+2. Run `run.bat` to open the program (EVERY time)
+3. Initial picture looks like this
 
    ![demo1](./demo/demo1.PNG)
 
-6. Click `選擇輸入文件` button on the upper left of the window to choose any file from MTS
+4. Click `選擇輸入文件` button on the upper left of the window to choose any file from MTS
 
    > Choose `specimen.txt` for demo
 
-7. Key in a number for `配比種類數量` which means the number of ratio type
+5. Key in a number for `配比種類數量` which means the number of ratio type
 
    > **<p.s> No blank fields allowed**
 
@@ -88,27 +88,27 @@
    |0.55|5|
    |0.87|3|
 
-8. Choose specimen size (`Cube` or `Cylinder`) or you can key in a number in custom area
+6. Choose specimen size (`Cube` or `Cylinder`) or you can key in a number in custom area
 
    > Choose `Cylinder` for demo
 
-9. Key in a folder name in `輸入存檔資料夾名稱` field to save the output files
+7. Key in a folder name in `輸入存檔資料夾名稱` field to save the output files
 
    > Enter `WTF_MTS` for demo
 
-10. Click `匯出Excel與Plots` button to start the journey!
+8. Click `匯出Excel與Plots` button to start the journey!
 
-    ![demo2](./demo/demo2.PNG)
+   ![demo2](./demo/demo2.PNG)
 
-11. All the data and figures are stored in save folder, i.e. `WTF_MTS`
+9. All the data and figures are stored in save folder, i.e. `WTF_MTS`
 
-12. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
+10. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
 
 ## Contact
 
 Feel free to contact me if needed
 
 - Author: madihsiang (R07)
-- Gmail: madihsiang@gmail.com
+- Email: madihsiang@gmail.com
 
 ## Happy Experiment!

@@ -18,7 +18,8 @@ class MainWindow(QWidget):
         super().__init__()
         loadUi(ui_file_path, self)
 
-        self.current_dir = os.path.dirname(ui_file_path)
+        self.current_dir = os.path.abspath(
+            os.path.join(os.path.dirname(ui_file_path), '..'))
         self.input_file_name = None
 
         self.setWindowTitle('MTS Data Transformer')
