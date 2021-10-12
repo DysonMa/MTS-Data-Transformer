@@ -106,6 +106,17 @@ Tutorial: https://github.com/DysonMa/MTS-Data-Transformer
 
 10. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
 
+## Release Note
+
+- v0.1.0
+  - poor design without OOP class
+- v0.2.0
+  - Finish codes and ui with better design
+- v0.2.1
+  - use pyinstaller to package codes
+- v0.2.2
+  - add `initialize.bat` and `run.bat` to solve the problem of exe file errors on different computer systems
+
 ## Contact
 
 Feel free to contact me if needed
