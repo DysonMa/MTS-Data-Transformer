@@ -43,7 +43,7 @@ class DataManager:
         specimens_datas = []
         for Id in range(len(specimens)):
             data_per_specimen = specimens[Id].split(
-                "Sec\tmm\tN\tmm\tmm\tsegments\n"
+                "s\tmm\tN\tmm\tmm\tsegments\n"
             )[-1]
             each_line = data_per_specimen.split('\n')
             displacement_list, force_list, D1_list, D2_list, stress_list, strain_list = [
@@ -185,3 +185,13 @@ class DataManager:
             "max_em_list": max_em_list,
             "avg_max_em_list": avg_max_em_list
         }
+
+
+if __name__ == "__main__":
+    dm = DataManager("input/1029-1.txt")  # 1029-1
+    datas = dm.get_datas(payload={
+        "area": np.pi/4*10**2,
+        "ratio_type": ["a"],
+        "exNum": [1]
+    })
+    print(datas)

@@ -19,7 +19,9 @@ class PlotWorker(QThread):
         bigger_fig, bigger_ax = plt.subplots(
             nrows=len(self.datas["specimens_datas"]),
             ncols=2,
-            figsize=(11.5, 3.3*len(self.datas["specimens_datas"]))
+            figsize=(11.5, 3.3*len(self.datas["specimens_datas"])),
+            squeeze=False if len(
+                self.datas["specimens_datas"]) == 1 else True  # one row!!
         )
         plt.tight_layout(pad=3.5)
 
@@ -47,10 +49,8 @@ class PlotWorker(QThread):
             plt.close(fig)  # close figure
 
             # stress-strain curve(put them into a bigger figure)
-            ax_plot(
-                bigger_ax[i, 0], "stress_strain_curve", **plot_args_1)
-            ax_plot(
-                bigger_ax[i, 1], "elastic_modulus", **plot_args_2)
+            ax_plot(bigger_ax[i, 0], "stress_strain_curve", **plot_args_1)
+            ax_plot(bigger_ax[i, 1], "elastic_modulus", **plot_args_2)
 
             # progressbar
             progress += step
