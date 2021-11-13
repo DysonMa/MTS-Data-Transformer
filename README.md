@@ -71,6 +71,13 @@ Tutorial: https://github.com/DysonMa/MTS-Data-Transformer
 
 1. Run `initialize.bat` for the first time to install all related packages (ONLY the first time)
 2. Run `run.bat` to open the program (EVERY time)
+
+
+>Manual deployment (alternative):
+> - `cd src`
+> - `pip install -r requirements.txt` 
+> - `python main.py`
+
 3. Initial picture looks like this
 
    ![demo6](./demo/demo6.PNG)
