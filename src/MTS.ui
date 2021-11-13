@@ -58,7 +58,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -80,14 +80,14 @@
    </property>
    <widget class="QWidget" name="tab_1">
     <attribute name="title">
-     <string>處理數據</string>
+     <string>合併多檔數據(僅小台MTS)</string>
     </attribute>
-    <widget class="QPushButton" name="select_input_file_btn">
+    <widget class="QPushButton" name="select_multiple_files_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>121</width>
+       <y>10</y>
+       <width>171</width>
        <height>31</height>
       </rect>
      </property>
@@ -98,7 +98,151 @@
       </size>
      </property>
      <property name="text">
-      <string>選擇輸入文件</string>
+      <string>加入想要合併的文件</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="merge_btn">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>330</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>合併多檔</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="move_up_btn">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>90</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上移</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="move_down_btn">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>130</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下移</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>50</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>由上到下代表合併的先後順序</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>1201</width>
+       <height>831</height>
+      </rect>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>1100</number>
+     </attribute>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>260</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>輸入合併後的新檔名:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="save_merge_file_name_input">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>290</y>
+       <width>131</width>
+       <height>27</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="delete_one_file_btn">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>170</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>移除檔案</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="delete_all_files_btn">
+     <property name="geometry">
+      <rect>
+       <x>1230</x>
+       <y>210</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>全部移除</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>處理數據</string>
+    </attribute>
+    <widget class="QPushButton" name="select_input_file_btn">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>選擇待處理文件</string>
      </property>
      <property name="checkable">
       <bool>false</bool>
@@ -107,7 +251,7 @@
     <widget class="QTextBrowser" name="path_txt">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>310</x>
        <y>20</y>
        <width>555</width>
        <height>31</height>
@@ -263,7 +407,7 @@
     <widget class="QLabel" name="save_folder_label">
      <property name="geometry">
       <rect>
-       <x>720</x>
+       <x>880</x>
        <y>20</y>
        <width>151</width>
        <height>31</height>
@@ -276,7 +420,7 @@
     <widget class="QLineEdit" name="save_file_name_input">
      <property name="geometry">
       <rect>
-       <x>870</x>
+       <x>1040</x>
        <y>23</y>
        <width>171</width>
        <height>27</height>
@@ -379,9 +523,9 @@
     <widget class="QPushButton" name="plot_btn">
      <property name="geometry">
       <rect>
-       <x>1060</x>
+       <x>1230</x>
        <y>20</y>
-       <width>371</width>
+       <width>201</width>
        <height>41</height>
       </rect>
      </property>
@@ -435,6 +579,29 @@
      <property name="placeholderText">
       <string>自訂面積 [cm^2]</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="MTS_type">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="currentText">
+      <string>大台MTS</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>大台MTS</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>小台MTS</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_3">

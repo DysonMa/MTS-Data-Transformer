@@ -20,9 +20,7 @@ class PlotWorker(QThread):
             nrows=len(self.datas["specimens_datas"]),
             ncols=2,
             figsize=(11.5, 3.3*len(self.datas["specimens_datas"])),
-            squeeze=False if len(
-                self.datas["specimens_datas"]) == 1 else True  # one row!!
-        )
+            squeeze=False if len(self.datas["specimens_datas"]) == 1 else True)  # one row!!
         plt.tight_layout(pad=3.5)
 
         # progressbar
@@ -39,10 +37,7 @@ class PlotWorker(QThread):
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
             ax_plot(ax1, "stress_strain_curve", **plot_args_1)
             ax_plot(ax2, "elastic_modulus", **plot_args_2)
-            fig.savefig(
-                os.path.join(self.datas["save_folder_path"],
-                             f"figure_{str(i+1)}.png")
-            )
+            fig.savefig(os.path.join(self.datas["save_folder_path"], f"figure_{str(i+1)}.png"))
 
             plt.clf()       # clear the entire current figure
             plt.cla()       # clear an axis
@@ -57,8 +52,7 @@ class PlotWorker(QThread):
             self.trigger.emit(round(progress))
 
         # save bigger figure
-        bigger_figure_path = os.path.join(
-            self.datas["save_folder_path"], "fig_All.png")
+        bigger_figure_path = os.path.join(self.datas["save_folder_path"], "fig_All.png")
         bigger_fig.savefig(bigger_figure_path, dpi=100)
 
         # avg max compressive strength
@@ -67,8 +61,7 @@ class PlotWorker(QThread):
             y=self.datas["avg_max_stress_list"],
             title=self.datas["comp_title"] or "Compressive Strength"
         )
-        avg_max_stress_figure_path = os.path.join(
-            self.datas["save_folder_path"], "Compressive Strength.png")
+        avg_max_stress_figure_path = os.path.join(self.datas["save_folder_path"], "Compressive Strength.png")
         plt.savefig(
             avg_max_stress_figure_path,
             bbox_inches='tight'
@@ -80,8 +73,7 @@ class PlotWorker(QThread):
             y=self.datas["avg_max_em_list"],
             title=self.datas["em_title"] or "Elastic modulus"
         )
-        avg_max_em_figure_path = os.path.join(
-            self.datas["save_folder_path"], "Elastic modulus.png")
+        avg_max_em_figure_path = os.path.join(self.datas["save_folder_path"], "Elastic modulus.png")
         plt.savefig(
             avg_max_em_figure_path,
             bbox_inches='tight'

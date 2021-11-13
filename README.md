@@ -22,6 +22,8 @@ Tutorial: https://github.com/DysonMa/MTS-Data-Transformer
 - use `logging` package to record log
 - Export Excel with all the data and figures
 - use `PyQt5.QThread` to create another thread to calculate time-consuming tasks without affecting the GUI
+- user can choose smaller or bigger MTS type
+- merge multiple files into a new file(only for smaller MTS)
 
 ## How to get it?
 
@@ -73,49 +75,50 @@ Tutorial: https://github.com/DysonMa/MTS-Data-Transformer
 
    ![demo1](./demo/demo1.PNG)
 
-4. Click `選擇輸入文件` button on the upper left of the window to choose any file from MTS
+4. (Optional) Select the tab of `合併多檔數據(僅小台MTS)`, and add the files to be merged, and arrange the order of the data, enter the file name, and click `合併多檔` to complete the merge. The merged txt just generated will be generated in the `/input/smaller_MTS_data/merged_txt_files` folder (all merged files in the future will be generated here)
 
-   > Choose `specimen.txt` for demo
+    ![demo5](./demo/demo5.PNG)
 
-5. Key in a number for `配比種類數量` which means the number of ratio type
+5. click the tab of `處理數據`
+
+    ![demo6](./demo/demo6.PNG)
+
+5. Choose `大台MTS` or `小台MTS` and click `選擇待處理文件` button on the upper left of the window to choose any file from MTS
+
+  - bigger MTS: only single file
+  - smaller MTS: single file or multiple files are supported
+
+   > Choose `WTF_MTS.txt` in the `/input/smaller_MTS_data/merged_txt_files` folder for smaller MTS demo
+
+6. Key in a number for `配比種類數量` which means the number of ratio type
 
    > **<p.s> No blank fields allowed**
 
    The datas below are just for demo, DO NOT take it seriously ^0^:
    |配比種類|配比數量|
    |:--:|:--:|
-   |0.25|5|
-   |0.35|5|
-   |0.45|5|
-   |0.55|5|
-   |0.87|3|
+   |0.35|1|
+   |0.45|1|
+   |0.55|1|
 
-6. Choose specimen size (`Cube` or `Cylinder`) or you can key in a number in custom area
+7. Choose specimen size (`Cube` or `Cylinder`) or you can key in a number in custom area
 
    > Choose `Cylinder` for demo
 
-7. Key in a folder name in `輸入存檔資料夾名稱` field to save the output files
+8. Key in a folder name in `輸入存檔資料夾名稱` field to save the output files
 
-   > Enter `WTF_MTS` for demo
+   > Enter `WTF_MTS_smaller` for demo
 
-8. Click `匯出Excel與Plots` button to start the journey!
+9. Click `匯出Excel與Plots` button to start the journey!
 
    ![demo2](./demo/demo2.PNG)
 
-9. All the data and figures are stored in save folder, i.e. `WTF_MTS`
+10. All the data and figures are stored in save folder, i.e. `WTF_MTS_smaller`
 
-10. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
+11. open `datas.xlsx`, you will see all the processed data, including the compressive strength, Elastic modulus and the loading history of each specimens.
 
-## Release Note
-
-- v0.1.0
-  - poor design without OOP class
-- v0.2.0
-  - Finish codes and ui with better design
-- v0.2.1
-  - use pyinstaller to package codes
-- v0.2.2
-  - add `initialize.bat` and `run.bat` to solve the problem of exe file errors on different computer systems
+    ![demo3](./demo/demo3.PNG)
+    ![demo4](./demo/demo4.PNG)
 
 ## Contact
 

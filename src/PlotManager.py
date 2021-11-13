@@ -1,8 +1,4 @@
 from typing import Dict, List
-# import pandas as pd
-# from matplotlib.figure import Figure
-# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
-# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from PIL import Image
 from PyQt5.QtGui import (
     QPixmap,
@@ -36,8 +32,7 @@ def Initial_layout_Figure(window) -> None:
     for i in range(len(text_list)):
         text_label = QLabel()
         text_label.setText(text_list[i])
-        text_label.setStyleSheet(
-            "QLabel{color:rgb(0,0,0,255);background-color:rgb(255,255,255,255);font-size:30px;font-weight:normal;font-family:Arial;}")
+        text_label.setStyleSheet("QLabel{color:rgb(0,0,0,255);background-color:rgb(255,255,255,255);font-size:30px;font-weight:normal;font-family:Arial;}")
         text_label.setScaledContents(True)
         scene = QGraphicsScene()
         scene.addWidget(text_label)
@@ -69,18 +64,15 @@ def ax_plot(ax, kind: str, **kwargs: Dict) -> None:
     if kind == "stress_strain_curve":
         strain_list, stress_list = kwargs["datas"]["strain_list"], kwargs["datas"]["stress_list"]
 
-        ax.set(title=title, xlabel=xlabel, ylabel=ylabel,
-               xlim=(0, max(strain_list)*1.25))
+        ax.set(title=title, xlabel=xlabel, ylabel=ylabel, xlim=(0, max(strain_list)*1.25))
         ax.scatter(strain_list, stress_list)
         ax.legend([specimen_name], loc='upper left')
     elif kind == "elastic_modulus":
-        x, y, slope, intercept = kwargs["datas"]["x"], kwargs["datas"][
-            "y"], kwargs["datas"]["slope"], kwargs["datas"]["intercept"]
+        x, y, slope, intercept = kwargs["datas"]["x"], kwargs["datas"]["y"], kwargs["datas"]["slope"], kwargs["datas"]["intercept"]
 
         ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
         ax.plot(x, y, 'o', x, linear_regression(x, slope, intercept), 'r')
-        ax.legend(
-            [specimen_name, f'Elastic Modulus: {round(slope, 2)}'], loc='upper left')
+        ax.legend([specimen_name, f'Elastic Modulus: {round(slope, 2)}'], loc='upper left')
     else:
         print(f"The kind {kind} is not defined!")
 

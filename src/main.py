@@ -34,12 +34,13 @@ if __name__ == "__main__":
         # elif __file__:
         #     application_path = os.path.dirname(__file__)
 
-        application_path = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), '..'))
+        application_path = os.path.abspath( os.path.join(os.path.dirname(__file__), '..'))
         ui_file_path = os.path.join(os.path.dirname(__file__), "MTS.ui")
+        
         logging.debug(f"application_path: {application_path}")
         logging.debug(f"ui_file_path: {ui_file_path}")
 
         MTS(ui_file_path).run()
+
     except Exception as e:
         logging.error("Catch an exception.", exc_info=True)
