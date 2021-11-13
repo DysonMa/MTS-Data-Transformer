@@ -73,7 +73,7 @@ Tutorial: https://github.com/DysonMa/MTS-Data-Transformer
 2. Run `run.bat` to open the program (EVERY time)
 3. Initial picture looks like this
 
-   ![demo1](./demo/demo1.PNG)
+   ![demo6](./demo/demo6.PNG)
 
 4. (Optional) Select the tab of `合併多檔數據(僅小台MTS)`, and add the files to be merged, and arrange the order of the data, enter the file name, and click `合併多檔` to complete the merge. The merged txt just generated will be generated in the `/input/smaller_MTS_data/merged_txt_files` folder (all merged files in the future will be generated here)
 
